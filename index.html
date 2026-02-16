@@ -1,282 +1,105 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAGNET.RO | Code & Travel</title>
-    <meta name="description" content="Jurnal de călătorie și programare. Explorând lumea, o linie de cod la un moment dat.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>DAGNET.RO</title>
+    <meta name="description" content="Explore the World.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --text-color: #e2e8f0;
-            --accent-color: #38bdf8; /* Albastru Tech */
-            --secondary-accent: #f59e0b; /* Portocaliu Travel */
-            --card-bg: #1e293b;
-        }
-
+        /* Reset default browser styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
+        body, html {
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            background-color: #0f172a;
+            color: #e2e8f0;
         }
 
-        h1, h2, h3 {
-            font-weight: 600;
-        }
-
-        .mono {
-            font-family: 'Fira Code', monospace;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--accent-color);
-            transition: 0.3s;
-        }
-
-        a:hover {
-            color: var(--secondary-accent);
-        }
-
-        /* Navbar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid #334155;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            font-size: 0.9rem;
-        }
-
-        /* Hero Section */
+        /* Main container - Full screen background */
         .hero {
-            height: 100vh;
+            height: 100%;
+            width: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 1rem;
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1519681393798-3828fb4090bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            
+            /* Darkened background image */
+            background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
         }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        /* Branding - Small logo top left */
+        .brand {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
         }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #cbd5e1;
+        /* Main Headline */
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0;
+            padding: 0 1rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        .typing-effect {
-            border-right: 3px solid var(--secondary-accent);
-            white-space: nowrap;
-            overflow: hidden;
-            animation: blink 0.75s step-end infinite;
+        /* Tech accent style (blue dot) */
+        .mono {
+            font-family: 'Fira Code', monospace;
+            color: #38bdf8; /* Tech blue */
+        }
+
+        /* Blinking cursor animation */
+        .cursor {
+            display: inline-block;
+            width: 15px;
+            background-color: #f59e0b; /* Accent orange */
+            animation: blink 1s infinite;
         }
 
         @keyframes blink {
-            50% { border-color: transparent; }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            border-radius: 5px;
-            font-family: 'Fira Code', monospace;
-        }
-
-        .btn:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 10%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2rem;
-        }
-
-        .section-title span {
-            color: var(--secondary-accent);
-        }
-
-        /* Cards Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            border-top: 3px solid var(--accent-color);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card i {
-            font-size: 2rem;
-            color: var(--secondary-accent);
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            margin-bottom: 1rem;
-        }
-
-        /* Terminal Style Snippet */
-        .terminal {
-            background: #000;
-            border-radius: 8px;
-            padding: 1.5rem;
-            font-family: 'Fira Code', monospace;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .terminal-header {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 1rem;
-        }
-
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .red { background: #ff5f56; }
-        .yellow { background: #ffbd2e; }
-        .green { background: #27c93f; }
-
-        .code-line { color: #a5b3ce; margin-bottom: 0.5rem; }
-        .keyword { color: #c678dd; }
-        .string { color: #98c379; }
-
-        /* Footer */
-        footer {
-            background: #020617;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
-
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2rem; }
-            .nav-links { display: none; } /* Simplificat pentru mobile */
+            h1 {
+                font-size: 2.5rem;
+            }
+            .brand {
+                left: 50%;
+                transform: translateX(-50%); /* Center branding on mobile */
+            }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo mono">&lt;DAGNET.RO /&gt;</div>
-        <div class="nav-links">
-            <a href="#about">Despre</a>
-            <a href="#projects">Proiecte</a>
-            <a href="#blog">Jurnal</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+    <div class="hero">
+        <div class="brand">&lt;DAGNET.RO /&gt;</div>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="mono">Explorează Lumea.<br><span class="typing-effect">Scrie Cod.</span></h1>
-            <p>De la cafenelele din București la plajele din Bali.</p>
-            <a href="#contact" class="btn">Connect();</a>
-        </div>
-    </header>
+        <h1>
+            Explore the World<span class="mono">.</span><span class="cursor">&nbsp;</span>
+        </h1>
+    </div>
 
-    <section id="about">
-        <h2 class="section-title">Despre <span>Mine</span></h2>
-        <div class="terminal">
-            <div class="terminal-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-            </div>
-            <div class="code-line">
-                <span class="keyword">const</span> developer = {
-            </div>
-            <div class="code-line">
-                &nbsp;&nbsp;nume: <span class="string">"Dagnet"</span>,
-            </div>
-            <div class="code-line">
-                &nbsp;&nbsp;pasiune: [<span class="string">"Web Dev"</span>, <span class="string">"Călătorii"</span>, <span class="string">"Fotografie"</span>],
-            </div>
-            <div class="code-line">
-                &nbsp;&nbsp;locatie_curenta: <span class="string">"Romania"</span>,
-            </div>
-            <div class="code-line">
-                &nbsp;&nbsp;status: <span class="string">"Ready to work"</span>
-            </div>
-            <div class="code-line">
-                };
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Ce <span>Fac</span></h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Web Development</h3>
-                <p>Construiesc aplicații web moderne, rapide și scalabile. React, Node.js și tot ce este între ele.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-plane-departure"></i>
-                <h3>Travel Blogging</h3>
-                <p>Documentez experiențele mele, sfaturi pentru digital nomads și cele mai bune locuri cu Wi-Fi.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-camera-retro"></i>
-                <h3>Content Creation</h3>
-                <p>Surprind momentele unice din călătorii și le transform în povești vizuale pentru
+</body>
+</html>
